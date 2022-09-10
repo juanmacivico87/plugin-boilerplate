@@ -62,11 +62,11 @@ class Endpoint
     /**
      * controller()
      *
-     * @return 	WP_REST_Response
+     * @return 	\WP_REST_Response
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function controller()
+    public function controller(): \WP_REST_Response
     {
         return $this->provider->get_wp_rest_response( [
             'code' => 'custom_response',
@@ -82,7 +82,7 @@ class Endpoint
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function permission_callback()
+    public function permission_callback(): bool
     {
         return true;
     }
