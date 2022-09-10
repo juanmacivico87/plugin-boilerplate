@@ -285,6 +285,21 @@ class WpProvider
     }
 
     /**
+     * register_rest_field()
+     *
+     * @param   string  $object_type
+     * @param   string  $attribute
+     * @param   array   $args
+     * @return 	void
+     * @access 	public
+     * @package	plugin-boilerplate
+     */
+    public function register_rest_field( array $object_type, string $attribute, array $args = [] ): void
+    {
+        register_rest_field( $object_type, $attribute, $args );
+    }
+
+    /**
      * register_rest_route()
      *
      * @param   string  $namespace

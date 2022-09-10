@@ -9,7 +9,7 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
  *
  * @package	plugin-boilerplate
  */
-class Endpoint
+abstract class Endpoint
 {
     private WpProvider $provider;
 
