@@ -10,7 +10,9 @@ class WpDependencies
 {
     const MIN_PHP_VERSION = '7.4.0';
     const MIN_WP_VERSION = '5.0';
-    const DEPENDENCIES = [];
+    const DEPENDENCIES = [
+        'Advanced Custom Fields PRO' => 'advanced-custom-fields-pro/acf.php',
+    ];
 
     private ?array $active_plugins = null;
     private WpProvider $provider;
