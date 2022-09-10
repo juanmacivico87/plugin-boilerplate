@@ -1,6 +1,7 @@
 <?php
 namespace PluginBoilerplate\App;
 
+use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
 use PluginBoilerplate\Providers\WordPress\WpActions;
 use PluginBoilerplate\Providers\WordPress\WpDependencies;
 use PluginBoilerplate\Providers\WordPress\WpProvider;
@@ -12,6 +13,7 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
  */
 class App
 {
+    private AcfProvider $acf;
     private WpProvider $provider;
     private WpDependencies $wp_dependencies;
 
@@ -59,6 +61,7 @@ class App
     public function load_dependencies(): void
     {
         $this->provider = new WpProvider();
+        $this->acf = new AcfProvider();
         $this->wp_dependencies = new WpDependencies( $this->provider );
     }
 
