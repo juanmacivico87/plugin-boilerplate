@@ -329,4 +329,19 @@ class WpProvider
     {
         return new \WP_REST_Response( $data, $http_code, $headers );
     }
+
+    /**
+     * add_role()
+     *
+     * @param   string  $role
+     * @param   string  $display_name
+     * @param   array   $capabilities
+     * @return 	void
+     * @access 	public
+     * @package	plugin-boilerplate
+     */
+    public function add_role( string $role, string $display_name, array $capabilities = [] ): void
+    {
+        add_role( $role, $display_name, $capabilities );
+    }
 }
