@@ -70,7 +70,7 @@ class Endpoint
     {
         return $this->provider->get_wp_rest_response( [
             'code' => 'custom_response',
-            'message' => __( 'Message of custom response', 'plugin-boilerplate' ),
+            'message' => $this->provider->translate( 'Message of custom response' ),
             'data' => [],
         ], 200 );
     }
