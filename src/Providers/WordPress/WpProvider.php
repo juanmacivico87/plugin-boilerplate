@@ -1,6 +1,8 @@
 <?php
 namespace PluginBoilerplate\Providers\WordPress;
 
+use WP_REST_Response;
+
 if ( false === defined( 'ABSPATH' ) ) {
     exit;
 }
@@ -280,5 +282,36 @@ class WpProvider
         }
 
         wp_enqueue_style( $handle, $src, $deps, $version, $media );
+    }
+
+    /**
+     * register_rest_route()
+     *
+     * @param   string  $namespace
+     * @param   string  $route
+     * @param   array   $args
+     * @param   bool    $override
+     * @return 	void
+     * @access 	public
+     * @package	plugin-boilerplate
+     */
+    public function register_rest_route( string $namespace, string $route, array $args = [], bool $override = false ): void
+    {
+        register_rest_route( $namespace, $route, $args, $override );
+    }
+
+    /**
+     * get_wp_rest_response()
+     *
+     * @param   array|null  $data
+     * @param   int         $http_code
+     * @param   array       $headers
+     * @return 	\WP_REST_Response
+     * @access 	public
+     * @package	plugin-boilerplate
+     */
+    public function get_wp_rest_response( ?array $data = null, int $http_code, array $headers = [] ): \WP_REST_Response
+    {
+        return new \WP_REST_Response( $data, $http_code, $headers );
     }
 }

@@ -9,6 +9,7 @@ namespace PluginBoilerplate\Providers\WordPress;
 class WpActions
 {
     const INIT = 'init';
+    const REST_API_INIT = 'rest_api_init';
     const ADMIN_NOTICES = 'admin_notices';
     const PLUGINS_LOADED = 'plugins_loaded';
     const WP_ENQUEUE_SCRIPTS = 'wp_enqueue_scripts';
