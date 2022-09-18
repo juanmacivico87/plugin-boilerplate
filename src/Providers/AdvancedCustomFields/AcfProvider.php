@@ -42,6 +42,6 @@ class AcfProvider
      */
     public function add_local_field_group( array $fields_group ): void
     {
-        add_local_field_group( $fields_group );
+        acf_add_local_field_group( $fields_group );
     }
 }
