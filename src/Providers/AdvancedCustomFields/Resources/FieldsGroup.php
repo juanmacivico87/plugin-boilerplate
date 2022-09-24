@@ -16,8 +16,6 @@ abstract class FieldsGroup
     private AcfProvider $acf;
 
     protected string $title = '';
-    protected array $fields = [];
-    protected array $location = [];
     protected int $menu_order = 0;
     protected string $position = 'normal';
     protected string $style = 'default';
@@ -56,6 +54,36 @@ abstract class FieldsGroup
     }
 
     /**
+     * get_fields()
+     *
+     * @return 	array
+     * @access 	protected
+     * @package	plugin-boilerplate
+     */
+    protected function get_fields(): array
+    {
+        // Copy into $fields array the array of fields from ACF PRO.
+        $fields = [];
+
+        return $fields;
+    }
+
+    /**
+     * get_location()
+     *
+     * @return 	array
+     * @access 	protected
+     * @package	plugin-boilerplate
+     */
+    protected function get_location(): array
+    {
+        // Copy into $location array the array of locations for the group of fields.
+        $location = [];
+
+        return $location;
+    }
+
+    /**
      * create_fields_group()
      *
      * @return 	void
@@ -67,8 +95,8 @@ abstract class FieldsGroup
         $this->acf->add_local_field_group( [
             'key' => 'group_' . md5( $this::GROUP_NAME ),
             'title' => $this->title,
-            'fields' => $this->fields,
-            'location' => $this->location,
+            'fields' => $this->get_fields(),
+            'location' => $this->get_location(),
             'menu_order' => $this->menu_order,
             'position' => $this->position,
             'style' => $this->style,
