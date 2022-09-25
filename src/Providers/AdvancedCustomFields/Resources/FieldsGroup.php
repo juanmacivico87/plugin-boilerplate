@@ -68,6 +68,8 @@ abstract class FieldsGroup
         // Set into $fields array the fields from FieldService class.
         $fields = [];
 
+        // $fields[] = $this->field_service->create_text_field();
+
         return $fields;
     }
 

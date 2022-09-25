@@ -6,7 +6,7 @@ namespace PluginBoilerplate\Providers\AdvancedCustomFields\Services;
  *
  * @package	plugin-boilerplate
  */
-abstract class FieldService
+class FieldService
 {
     /**
      * __construct()
