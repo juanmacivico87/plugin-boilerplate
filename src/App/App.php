@@ -2,6 +2,7 @@
 namespace PluginBoilerplate\App;
 
 use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
+use PluginBoilerplate\Providers\AdvancedCustomFields\Services\FieldService;
 use PluginBoilerplate\Providers\WordPress\WpActions;
 use PluginBoilerplate\Providers\WordPress\WpDependencies;
 use PluginBoilerplate\Providers\WordPress\WpProvider;
@@ -16,6 +17,7 @@ class App
     private AcfProvider $acf;
     private WpProvider $provider;
     private WpDependencies $wp_dependencies;
+    private FieldService $acf_field_service;
 
     /**
      * __construct()
@@ -63,6 +65,7 @@ class App
         $this->provider = new WpProvider();
         $this->acf = new AcfProvider();
         $this->wp_dependencies = new WpDependencies( $this->provider );
+        $this->acf_field_service = new FieldService();
     }
 
     /**

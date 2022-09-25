@@ -2,6 +2,7 @@
 namespace PluginBoilerplate\Providers\AdvancedCustomFields\Resources;
 
 use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
+use PluginBoilerplate\Providers\AdvancedCustomFields\Services\FieldService;
 use PluginBoilerplate\Providers\WordPress\WpActions;
 use PluginBoilerplate\Providers\WordPress\WpProvider;
 
@@ -14,6 +15,7 @@ abstract class FieldsGroup
 {
     private WpProvider $provider;
     private AcfProvider $acf;
+    private FieldService $field_service;
 
     protected string $title = '';
     protected int $menu_order = 0;
@@ -33,10 +35,11 @@ abstract class FieldsGroup
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct( WpProvider $provider, AcfProvider $acf )
+    public function __construct( WpProvider $provider, AcfProvider $acf, FieldService $field_service )
     {
         $this->provider = $provider;
         $this->acf = $acf;
+        $this->field_service = $field_service;
 
         $this->init();
     }
@@ -62,7 +65,7 @@ abstract class FieldsGroup
      */
     protected function get_fields(): array
     {
-        // Copy into $fields array the array of fields from ACF PRO.
+        // Set into $fields array the fields from FieldService class.
         $fields = [];
 
         return $fields;
