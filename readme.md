@@ -71,6 +71,7 @@ De todas formas, para ayudarte, te hago un resumen de los archivos y carpetas qu
             - **WpDependencies.php:** Clase en la que se definen los plugins de terceros que necesita el plugin para funcionar, así como las versiones de PHP y de WordPress. En caso de que no se cumplan con estos requisitos, el plugin no se activará.
         - **AdvancedCustomFields:** En este directorio se definen constantes con los hooks y opciones del plugin ACF PRO, así como métodos que engloban las funciones de dicho plugin.
             - **Resources:** Contiene clases abstractas que facilitan el desarrollo de las distintas funcionalidades del plugin.
+            - **Services:** Contiene clases con métodos que sean de utilidad para el desarrollo del plugin y que puedan ser utilizados desde cualquier otra clase, como por ejemplo un método que se encargue de crear un tipo de campo concreto desde ACF.
             - **AcfActions.php:** Clase en la que se definen las constantes con los hooks de ACF.
             - **AcfProvider.php:** Clase en la que se definen los métodos que engloban las funciones de ACF. Muy útil para realizar test con PHPUnit sin la necesidad de ejecutar WordPress.
             - **AcfLocations.php:** Clase en la que se definen las distintas localizaciones a las que se pueden asignar grupos de campos de ACF.
