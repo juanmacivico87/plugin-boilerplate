@@ -6,6 +6,8 @@
     <exclude-pattern>plugin-boilerplate.php</exclude-pattern>
     <!-- Exclude the Composer Vendor directory -->
     <exclude-pattern>/vendor/*</exclude-pattern>
+    <!-- WPCS installed path -->
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
     <!-- Just check php files -->
     <arg name="extensions" value="php"/>
     <!-- Colors! Nice! -->
@@ -74,4 +76,6 @@
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
     <!-- Ensure there is no whitespace before a semicolon -->
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+    <!-- Yoda Conditions -->
+    <rule ref="WordPress.PHP.YodaConditions"/>
 </ruleset>
