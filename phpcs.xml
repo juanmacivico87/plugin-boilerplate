@@ -6,8 +6,6 @@
     <exclude-pattern>plugin-boilerplate.php</exclude-pattern>
     <!-- Exclude the Composer Vendor directory -->
     <exclude-pattern>/vendor/*</exclude-pattern>
-    <!-- PHPCS installed path -->
-    <config name="installed_paths" value="~/.config/composer/vendor/bin/phpcs" />
     <!-- Just check php files -->
     <arg name="extensions" value="php"/>
     <!-- Colors! Nice! -->
