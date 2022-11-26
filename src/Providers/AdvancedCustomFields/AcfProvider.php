@@ -3,8 +3,6 @@ namespace PluginBoilerplate\Providers\AdvancedCustomFields;
 
 /**
  * AcfProvider
- *
- * @package	plugin-boilerplate
  */
 class AcfProvider
 {
@@ -22,7 +20,7 @@ class AcfProvider
     /**
      * add_options_page()
      *
-     * @param   array   $args
+     * @param   array $args Arguments for the options page.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -35,7 +33,7 @@ class AcfProvider
     /**
      * add_local_field_group()
      *
-     * @param   array   $fields_group
+     * @param   array $fields_group Arguments for the fields group.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

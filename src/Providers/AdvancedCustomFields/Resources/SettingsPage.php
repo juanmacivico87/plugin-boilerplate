@@ -7,8 +7,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * SettingsPage
- *
- * @package	plugin-boilerplate
  */
 abstract class SettingsPage
 {
@@ -27,6 +25,8 @@ abstract class SettingsPage
     /**
      * __construct()
      *
+     * @param   WpProvider  $provider Provider of WordPress functions.
+     * @param   AcfProvider $acf      Provider of ACF functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

@@ -1,0 +1,137 @@
+<?xml version="1.0"?>
+<ruleset name="My Custom PHPCS">
+    <description>Sniffs for the coding standards of your project.</description>
+    <file>.</file>
+    <!-- Exclude the main file -->
+    <exclude-pattern>plugin-boilerplate.php</exclude-pattern>
+    <!-- Exclude the Composer Vendor directory -->
+    <exclude-pattern>/vendor/*</exclude-pattern>
+    <!-- WPCS installed path -->
+    <config name="installed_paths" value="vendor/wp-coding-standards/wpcs" />
+    <!-- Just check php files -->
+    <arg name="extensions" value="php"/>
+    <!-- Colors! Nice! -->
+    <arg name="colors"/>
+    <!-- Full report -->
+    <arg name="report" value="full"/>
+    <!-- Bans the use of the PHP long array syntax -->
+    <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
+    <!-- Checks the declaration of the class and its inheritance is correct -->
+    <rule ref="Squiz.Classes.ClassDeclaration"/>
+    <!-- Tests that the file name and the name of the class contained within the file match -->
+    <rule ref="Squiz.Classes.ClassFileName"/>
+    <!-- Ensures classes don't contain duplicate property names -->
+    <rule ref="Squiz.Classes.DuplicateProperty"/>
+    <!-- Verifies that properties are declared correctly -->
+    <rule ref="PSR2.Classes.PropertyDeclaration"/>
+    <!-- Ensures classes are in camel caps, and the first letter is capitalised -->
+    <rule ref="Squiz.Classes.ValidClassName"/>
+    <!-- This sniff class detected empty statement -->
+    <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
+    <!-- Detects unconditional if- and elseif-statements -->
+    <rule ref="Generic.CodeAnalysis.UnconditionalIfStatement"/>
+    <!-- Parses and verifies the class doc comment -->
+    <rule ref="Squiz.Commenting.ClassComment"/>
+    <!-- Parses and verifies the doc comments for functions -->
+    <rule ref="Squiz.Commenting.FunctionComment"/>
+    <!-- Checks that the file does not end with a closing tag -->
+    <rule ref="Zend.Files.ClosingTag"/>
+    <!-- Ensures the file ends with a newline character -->
+    <rule ref="PSR2.Files.EndFileNewline"/>
+    <!-- Ensures there is no space after cast tokens -->
+    <rule ref="Generic.Formatting.NoSpaceAfterCast"/>
+    <!-- Checks that duplicate arguments are not used in function declarations -->
+    <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
+    <!-- Checks that the opening brace of a function is on the line after the function declaration -->
+    <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
+    <!-- Ensures function params with default values are at the end of the declaration -->
+    <rule ref="PEAR.Functions.ValidDefaultValue"/>
+    <!-- Checks that the closing brace of a function goes directly after the body -->
+    <rule ref="PSR2.Methods.FunctionClosingBrace"/>
+    <!-- Ensures namespaces are declared correctly -->
+    <rule ref="PSR2.Namespaces.NamespaceDeclaration"/>
+    <!-- Ensures USE blocks are declared correctly -->
+    <rule ref="PSR2.Namespaces.UseDeclaration"/>
+    <!-- Ensures that constant names are all uppercase -->
+    <rule ref="Generic.NamingConventions.UpperCaseConstantName"/>
+    <!-- Ensures logical operators 'and' and 'or' are not used -->
+    <rule ref="Squiz.Operators.ValidLogicalOperators"/>
+    <!-- Checks that the opening PHP tag is the first content in a file -->
+    <rule ref="Generic.PHP.CharacterBeforePHPOpeningTag"/>
+    <!-- Discourages the use of deprecated PHP functions -->
+    <rule ref="Generic.PHP.DeprecatedFunctions"/>
+    <!-- Verifies that no alternative PHP tags are used -->
+    <rule ref="Generic.PHP.DisallowAlternativePHPTags"/>
+    <!-- Checks the indentation of embedded PHP code segments -->
+    <rule ref="Squiz.PHP.EmbeddedPhp"/>
+    <!-- Checks that all uses of true, false and null are lowercase -->
+    <rule ref="Generic.PHP.LowerCaseConstant"/>
+    <!-- Checks for usage of $this in static methods, which will cause runtime errors -->
+    <rule ref="Squiz.Scope.StaticThisUsage"/>
+    <!-- Makes sure that any strings that are "echoed" are not enclosed in brackets -->
+    <rule ref="Squiz.Strings.EchoedStrings"/>
+    <!-- Checks that two strings are not concatenated together; suggests using one string instead -->
+    <rule ref="Generic.Strings.UnnecessaryStringConcat"/>
+    <!-- Checks that there is no empty line after the opening brace of a function -->
+    <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
+    <!-- Ensure there is no whitespace before a semicolon -->
+    <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
+    <!-- Enforces WordPress array spacing format -->
+    <rule ref="WordPress.Arrays.ArrayDeclarationSpacing"/>
+    <!-- Enforces WordPress array indentation for multi-line arrays -->
+    <rule ref="WordPress.Arrays.ArrayIndentation"/>
+    <!-- Check for proper spacing in array key references -->
+    <rule ref="WordPress.Arrays.ArrayKeySpacingRestrictions"/>
+    <!-- Enforces a comma after each array item and the spacing around it -->
+    <rule ref="WordPress.Arrays.CommaAfterArrayItem"/>
+    <!-- Verifies object instantiation statements -->
+    <rule ref="WordPress.Classes.ClassInstantiation"/>
+    <!-- Don't use current_time() to get a (timezone corrected) "timestamp" -->
+    <rule ref="WordPress.DateTime.CurrentTimeTimestamp"/>
+    <!-- Check for incorrect use of the $wpdb->prepare method -->
+    <rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+    <!-- Makes sure that variables aren't directly interpolated into SQL statements -->
+    <rule ref="WordPress.DB.PreparedSQL"/>
+    <!-- Flag potentially slow queries -->
+    <rule ref="WordPress.DB.SlowDBQuery"/>
+    <!-- Enforces WordPress function name and method name format, based upon Squiz code -->
+    <rule ref="WordPress.NamingConventions.ValidFunctionName"/>
+    <!-- Checks the naming of variables and member variables -->
+    <rule ref="WordPress.NamingConventions.ValidVariableName"/>
+    <!-- Enforces Strict Comparison checks, based upon Squiz code -->
+    <rule ref="WordPress.PHP.StrictComparisons"/>
+    <!-- Verifies the correct usage of type cast keywords -->
+    <rule ref="WordPress.PHP.TypeCasts"/>
+    <!-- Enforces Yoda conditional statements -->
+    <rule ref="WordPress.PHP.YodaConditions"/>
+    <!-- Checks that nonce verification accompanies form processing -->
+    <rule ref="WordPress.Security.NonceVerification"/>
+    <!-- Warn about __FILE__ for page registration -->
+    <rule ref="WordPress.Security.PluginMenuSlug"/>
+    <!-- Encourages use of wp_safe_redirect() to avoid open redirect vulnerabilities -->
+    <rule ref="WordPress.Security.SafeRedirect"/>
+    <!-- Flag any non-validated/sanitized input ( _GET / _POST / etc. ) -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+    <!-- Comprehensive I18n text domain fixer tool -->
+    <rule ref="WordPress.Utils.I18nTextDomainFixer"/>
+    <!-- Ensure cast statements are preceded by whitespace -->
+    <rule ref="WordPress.WhiteSpace.CastStructureSpacing"/>
+    <!-- Verify operator spacing, uses the Squiz sniff, but additionally also sniffs for the `!` (boolean not) operator -->
+    <rule ref="WordPress.WhiteSpace.OperatorSpacing"/>
+    <!-- Restricts the use of deprecated WordPress classes and suggests alternatives -->
+    <rule ref="WordPress.WP.DeprecatedClasses"/>
+    <!-- Restricts the use of various deprecated WordPress functions and suggests alternatives -->
+    <rule ref="WordPress.WP.DeprecatedFunctions"/>
+    <!-- Check for usage of deprecated parameters in WP functions and suggest alternative based on the parameter passed -->
+    <rule ref="WordPress.WP.DeprecatedParameters"/>
+    <!-- Check for usage of deprecated parameter values in WP functions and provide alternative based on the parameter passed -->
+    <rule ref="WordPress.WP.DeprecatedParameterValues"/>
+    <!-- Warns against usage of discouraged WP CONSTANTS and recommends alternatives -->
+    <rule ref="WordPress.WP.DiscouragedConstants"/>
+    <!-- Discourages the use of various WordPress functions and suggests alternatives -->
+    <rule ref="WordPress.WP.DiscouragedFunctions"/>
+    <!-- Makes sure scripts and styles are enqueued and not explicitly echo'd -->
+    <rule ref="WordPress.WP.EnqueuedResources"/>
+    <!-- Warns about overwriting WordPress native global variables -->
+    <rule ref="WordPress.WP.GlobalVariablesOverride"/>
+</ruleset>
