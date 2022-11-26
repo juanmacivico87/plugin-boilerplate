@@ -76,6 +76,62 @@
     <rule ref="Squiz.WhiteSpace.FunctionOpeningBraceSpace"/>
     <!-- Ensure there is no whitespace before a semicolon -->
     <rule ref="Squiz.WhiteSpace.SemicolonSpacing"/>
-    <!-- Yoda Conditions -->
+    <!-- Enforces WordPress array spacing format -->
+    <rule ref="WordPress.Arrays.ArrayDeclarationSpacing"/>
+    <!-- Enforces WordPress array indentation for multi-line arrays -->
+    <rule ref="WordPress.Arrays.ArrayIndentation"/>
+    <!-- Check for proper spacing in array key references -->
+    <rule ref="WordPress.Arrays.ArrayKeySpacingRestrictions"/>
+    <!-- Enforces a comma after each array item and the spacing around it -->
+    <rule ref="WordPress.Arrays.CommaAfterArrayItem"/>
+    <!-- Verifies object instantiation statements -->
+    <rule ref="WordPress.Classes.ClassInstantiation"/>
+    <!-- Don't use current_time() to get a (timezone corrected) "timestamp" -->
+    <rule ref="WordPress.DateTime.CurrentTimeTimestamp"/>
+    <!-- Check for incorrect use of the $wpdb->prepare method -->
+    <rule ref="WordPress.DB.PreparedSQLPlaceholders"/>
+    <!-- Makes sure that variables aren't directly interpolated into SQL statements -->
+    <rule ref="WordPress.DB.PreparedSQL"/>
+    <!-- Flag potentially slow queries -->
+    <rule ref="WordPress.DB.SlowDBQuery"/>
+    <!-- Enforces WordPress function name and method name format, based upon Squiz code -->
+    <rule ref="WordPress.NamingConventions.ValidFunctionName"/>
+    <!-- Checks the naming of variables and member variables -->
+    <rule ref="WordPress.NamingConventions.ValidVariableName"/>
+    <!-- Enforces Strict Comparison checks, based upon Squiz code -->
+    <rule ref="WordPress.PHP.StrictComparisons"/>
+    <!-- Verifies the correct usage of type cast keywords -->
+    <rule ref="WordPress.PHP.TypeCasts"/>
+    <!-- Enforces Yoda conditional statements -->
     <rule ref="WordPress.PHP.YodaConditions"/>
+    <!-- Checks that nonce verification accompanies form processing -->
+    <rule ref="WordPress.Security.NonceVerification"/>
+    <!-- Warn about __FILE__ for page registration -->
+    <rule ref="WordPress.Security.PluginMenuSlug"/>
+    <!-- Encourages use of wp_safe_redirect() to avoid open redirect vulnerabilities -->
+    <rule ref="WordPress.Security.SafeRedirect"/>
+    <!-- Flag any non-validated/sanitized input ( _GET / _POST / etc. ) -->
+    <rule ref="WordPress.Security.ValidatedSanitizedInput"/>
+    <!-- Comprehensive I18n text domain fixer tool -->
+    <rule ref="WordPress.Utils.I18nTextDomainFixer"/>
+    <!-- Ensure cast statements are preceded by whitespace -->
+    <rule ref="WordPress.WhiteSpace.CastStructureSpacing"/>
+    <!-- Verify operator spacing, uses the Squiz sniff, but additionally also sniffs for the `!` (boolean not) operator -->
+    <rule ref="WordPress.WhiteSpace.OperatorSpacing"/>
+    <!-- Restricts the use of deprecated WordPress classes and suggests alternatives -->
+    <rule ref="WordPress.WP.DeprecatedClasses"/>
+    <!-- Restricts the use of various deprecated WordPress functions and suggests alternatives -->
+    <rule ref="WordPress.WP.DeprecatedFunctions"/>
+    <!-- Check for usage of deprecated parameters in WP functions and suggest alternative based on the parameter passed -->
+    <rule ref="WordPress.WP.DeprecatedParameters"/>
+    <!-- Check for usage of deprecated parameter values in WP functions and provide alternative based on the parameter passed -->
+    <rule ref="WordPress.WP.DeprecatedParameterValues"/>
+    <!-- Warns against usage of discouraged WP CONSTANTS and recommends alternatives -->
+    <rule ref="WordPress.WP.DiscouragedConstants"/>
+    <!-- Discourages the use of various WordPress functions and suggests alternatives -->
+    <rule ref="WordPress.WP.DiscouragedFunctions"/>
+    <!-- Makes sure scripts and styles are enqueued and not explicitly echo'd -->
+    <rule ref="WordPress.WP.EnqueuedResources"/>
+    <!-- Warns about overwriting WordPress native global variables -->
+    <rule ref="WordPress.WP.GlobalVariablesOverride"/>
 </ruleset>
