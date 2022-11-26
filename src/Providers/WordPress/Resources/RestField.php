@@ -6,8 +6,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * RestField
- *
- * @package	plugin-boilerplate
  */
 abstract class RestField
 {
@@ -16,7 +14,7 @@ abstract class RestField
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider
+     * @param   WpProvider $provider Provider of WordPress functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

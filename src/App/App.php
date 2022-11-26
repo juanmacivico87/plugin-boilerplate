@@ -9,8 +9,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * App
- *
- * @package	plugin-boilerplate
  */
 class App
 {
@@ -128,15 +126,17 @@ class App
     {
         $dependencies = WpDependencies::DEPENDENCIES;
 
-        ?><div class="notice notice-error is-dismissible">
+        ?>
+        <div class="notice notice-error is-dismissible">
             <p><?php echo $this->provider->translate( 'In order to activate the <b>' . PLUGIN_BOILERPLATE_NAME . '</b> plugin, you have to meet the next requirements:' ); ?></p>
             <ul>
-                <li><?php echo sprintf( $this->provider->translate( 'PHP version: %s' ), WpDependencies::MIN_PHP_VERSION ) ?></li>
-                <li><?php echo sprintf( $this->provider->translate( 'WordPress version: %s' ), WpDependencies::MIN_WP_VERSION ) ?></li>
-                <?php foreach( $dependencies as $name => $plugin ) : ?>
-                    <li><?php echo sprintf( $this->provider->translate( 'Activate plugin: %s' ), $name ) ?></li>
+                <li><?php echo sprintf( $this->provider->translate( 'PHP version: %s' ), WpDependencies::MIN_PHP_VERSION ); ?></li>
+                <li><?php echo sprintf( $this->provider->translate( 'WordPress version: %s' ), WpDependencies::MIN_WP_VERSION ); ?></li>
+                <?php foreach( $dependencies as $name => $plugin ): ?>
+                    <li><?php echo sprintf( $this->provider->translate( 'Activate plugin: %s' ), $name ); ?></li>
                 <?php endforeach ?>
             </ul>
-        </div><?php
+        </div>
+        <?php
     }
 }

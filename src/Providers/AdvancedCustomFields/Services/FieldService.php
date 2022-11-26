@@ -3,8 +3,6 @@ namespace PluginBoilerplate\Providers\AdvancedCustomFields\Services;
 
 /**
  * FieldService
- *
- * @package	plugin-boilerplate
  */
 class FieldService
 {
@@ -22,7 +20,7 @@ class FieldService
     /**
      * create_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	private
      * @package	plugin-boilerplate
@@ -57,7 +55,7 @@ class FieldService
     /**
      * create_text_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional), string prepend (optional), string append (optional), string maxlenght (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -83,7 +81,7 @@ class FieldService
     /**
      * create_textarea_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional), string maxlenght (optional), string rows (optional), string new_lines (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -109,7 +107,7 @@ class FieldService
     /**
      * create_number_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional), string prepend (optional), string append (optional), string min (optional), string max (optional), string step (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -137,7 +135,7 @@ class FieldService
     /**
      * create_range_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string prepend (optional), string append (optional), string min (optional), string max (optional), string step (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -164,7 +162,7 @@ class FieldService
     /**
      * create_email_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional), string prepend (optional), string append (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -189,7 +187,7 @@ class FieldService
     /**
      * create_url_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -212,7 +210,7 @@ class FieldService
     /**
      * create_password_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string placeholder (optional), string prepend (optional), string append (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -236,7 +234,7 @@ class FieldService
     /**
      * create_select_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string default_value (optional), string placeholder (optional), array choices (required), bool allow_null (optional), bool multiple (optional), bool ui (optional), bool ajax (optional), string return_format (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate
@@ -265,7 +263,7 @@ class FieldService
     /**
      * create_link_field()
      *
-     * @param   array   $args[ string name (required), string label (optional), string instructions (optional), string required (optional), array conditional_logic (optional), string width  (optional), string class (optional), string id (optional), string return_format (optional) ]
+     * @param   array $args Arguments to create the field.
      * @return 	array
      * @access 	public
      * @package	plugin-boilerplate

@@ -1,4 +1,4 @@
-# Plugin sample
+# Plugin boilerplate
 
 Este repositorio contiene un boilerplate para desarrollar plugins para WordPress a partir del mismo.
 
@@ -89,6 +89,24 @@ De todas formas, para ayudarte, te hago un resumen de los archivos y carpetas qu
 - **composer.json:** Este es el archivo de configuración de Composer. En él, encontrarás las librerías y dependencias que el plugin necesita para funcionar. Quizá necesites añadir las tuyas propias en función del plugin que vayas a desarrollar.
 - **composer.lock:** Este archivo contiene las dependencias que se han instalado actualmente en tu plugin a través de composer, así como las versiones de cada una de ellas. Puedes modificar su contenido ejecutando el comando "composer update" en una consola desde la raíz del plugin.
 - **.gitignore:** Este archivo contiene aquellos archivos que deben ser ignorados por Git y, por tanto no se deben subir al repositorio.
+- **phpcs.xml:** Se trata del archivo con las reglas que hay que seguir para que el código cumpla con los estándares del proyecto.
+
+## Comandos útiles durante el desarrollo del plugin
+
+|Comando|Descripción|
+|---|---|
+|```composer install```|Instala las dependencias necesarias para el correcto funcionamiento del plugin (no se incluyen plugins ni temas de terceros)|
+|```composer update```|Actualiza las dependencias necesarias para el correcto funcionamiento del plugin (no se incluyen plugins ni temas de terceros)|
+|```composer phpcs```|Permite ejecutar el CodeSniffer y localizar errores en la sintaxis del código|
+|```composer fix```|Arregla, de forma automática, algunos errores en la sintaxis del código detectados por el CodeSniffer|
+
+## Changelog
+
+### 0.2.0
+- Incorporación del CodeSniffer y de los comandos ```composer phpcs``` y ```composer fix```.
+
+### 0.1.0
+- Versión inicial del boilerplate
 
 ## Nota informativa
 

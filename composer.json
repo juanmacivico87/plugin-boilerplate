@@ -8,5 +8,13 @@
         "psr-4": {
             "PluginBoilerplate\\": "src/"
         }
+    },
+    "scripts": {
+        "phpcs": "vendor/bin/phpcs --standard=phpcs.xml",
+        "fix": "vendor/bin/phpcbf --standard=phpcs.xml"
+    },
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.7",
+        "wp-coding-standards/wpcs": "^2.3"
     }
 }

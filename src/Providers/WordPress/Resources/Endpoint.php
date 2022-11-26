@@ -6,8 +6,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * Endpoint
- *
- * @package	plugin-boilerplate
  */
 abstract class Endpoint
 {
@@ -19,7 +17,7 @@ abstract class Endpoint
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider
+     * @param   WpProvider $provider Provider of WordPress functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
@@ -78,7 +76,7 @@ abstract class Endpoint
     /**
      * permission_callback()
      *
-     * @return 	bool
+     * @return 	boolean
      * @access 	public
      * @package	plugin-boilerplate
      */

@@ -6,8 +6,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * Role
- *
- * @package	plugin-boilerplate
  */
 abstract class Role
 {
@@ -18,6 +16,7 @@ abstract class Role
     /**
      * __construct()
      *
+     * @param   WpProvider $provider Provider of WordPress functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
