@@ -8,8 +8,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * FieldsGroup
- *
- * @package	plugin-boilerplate
  */
 abstract class FieldsGroup
 {
@@ -30,7 +28,10 @@ abstract class FieldsGroup
 
     /**
      * __construct()
-     *
+     * 
+     * @param   WpProvider   $provider      Provider of WordPress functions.
+     * @param   AcfProvider  $acf           Provider of ACF functions.
+     * @param   FieldService $field_service Service to create fields.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

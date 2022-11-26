@@ -3,8 +3,6 @@ namespace PluginBoilerplate\Providers\AdvancedCustomFields;
 
 /**
  * AcfLocations
- *
- * @package	plugin-boilerplate
  */
 class AcfLocations
 {

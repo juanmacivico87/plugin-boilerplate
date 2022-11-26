@@ -3,8 +3,6 @@ namespace PluginBoilerplate\Providers\WordPress;
 
 /**
  * WpActions
- *
- * @package	plugin-boilerplate
  */
 class WpActions
 {

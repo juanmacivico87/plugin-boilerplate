@@ -6,8 +6,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * Taxonomy
- *
- * @package	plugin-boilerplate
  */
 abstract class Taxonomy
 {
@@ -44,8 +42,8 @@ abstract class Taxonomy
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider
-     * @param   array       $args
+     * @param   WpProvider $provider Provider of WordPress functions.
+     * @param   array      $args     Arguments to create the taxonomy.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

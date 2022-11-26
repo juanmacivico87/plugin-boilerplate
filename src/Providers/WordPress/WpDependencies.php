@@ -3,8 +3,6 @@ namespace PluginBoilerplate\Providers\WordPress;
 
 /**
  * WpDependencies
- *
- * @package	plugin-boilerplate
  */
 class WpDependencies
 {
@@ -20,7 +18,7 @@ class WpDependencies
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider
+     * @param   WpProvider $provider Provider of WordPress functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
@@ -59,7 +57,7 @@ class WpDependencies
     /**
      * check_dependencies()
      *
-     * @return 	bool
+     * @return 	boolean
      * @access 	public
      * @package	plugin-boilerplate
      */

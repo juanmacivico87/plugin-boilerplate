@@ -6,8 +6,6 @@ use PluginBoilerplate\Providers\WordPress\WpProvider;
 
 /**
  * PostType
- *
- * @package	plugin-boilerplate
  */
 abstract class PostType
 {
@@ -42,8 +40,8 @@ abstract class PostType
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider
-     * @param   array       $args
+     * @param   WpProvider $provider Provider of WordPress functions.
+     * @param   array      $args     Arguments to create the post type.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
