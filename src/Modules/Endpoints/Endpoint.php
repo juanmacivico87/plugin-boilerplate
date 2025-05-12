@@ -1,31 +1,21 @@
 <?php
-namespace PluginBoilerplate\Providers\WordPress\Resources;
-
-use PluginBoilerplate\Providers\WordPress\WpActions;
-use PluginBoilerplate\Providers\WordPress\WpProvider;
+namespace PluginBoilerplate\Modules\Endpoints;
 
 /**
  * Endpoint
  */
-abstract class Endpoint
-{
-    private WpProvider $provider;
-
+abstract class Endpoint {
     protected string $namespace = 'v1/plugin-boilerplate';
     protected string $method = 'GET';
 
     /**
      * __construct()
      *
-     * @param   WpProvider $provider Provider of WordPress functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct( WpProvider $provider )
-    {
-        $this->provider = $provider;
-
+    public function __construct() {
         $this->init();
     }
 
@@ -36,9 +26,8 @@ abstract class Endpoint
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function init(): void
-    {
-        $this->provider->add_action( WpActions::REST_API_INIT, [ $this, 'create_rest_route' ] );
+    public function init(): void {
+        add_action( 'rest_api_init', [ $this, 'create_rest_route' ] );
     }
 
     /**
@@ -48,9 +37,8 @@ abstract class Endpoint
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function create_rest_route(): void
-    {
-        $this->provider->register_rest_route( $this->namespace, $this::ROUTE, [
+    public function create_rest_route(): void {
+        register_rest_route( $this->namespace, $this::ROUTE, [
             'methods' => $this->method,
             'callback' => [ $this, 'controller' ],
             'permission_callback' => [ $this, 'permission_callback' ],
@@ -64,11 +52,10 @@ abstract class Endpoint
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function controller(): \WP_REST_Response
-    {
-        return $this->provider->get_wp_rest_response( [
+    public function controller(): \WP_REST_Response {
+        return new \WP_REST_Response( [
             'code' => 'custom_response',
-            'message' => $this->provider->translate( 'Message of custom response' ),
+            'message' => __( 'Message of custom response', PLUGIN_BOILERPLATE_TEXTDOMAIN ),
             'data' => [],
         ], 200 );
     }
@@ -80,8 +67,7 @@ abstract class Endpoint
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function permission_callback(): bool
-    {
+    public function permission_callback(): bool {
         return true;
     }
 }

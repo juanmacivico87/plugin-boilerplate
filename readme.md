@@ -62,28 +62,15 @@ De todas formas, para ayudarte, te hago un resumen de los archivos y carpetas qu
 - **src:** 
     - **App:**
         - **App.php:** En este archivo se establece una clase con la configuración del plugin. En ella, se instancian todas las clases con las funcionalidades del plugin, se indica a la instalación de WordPress el nombre de dominio que debe buscar para traducir el plugin, se encolan los ficheros CSS y Javascript globales que el plugin necesita, y se declaran las funciones que se llaman desde el archivo principal del plugin al activar, desactivar y borrar el plugin.
-    - **Providers:** Con el objetivo de conseguir que WordPress sea una dependencia del plugin y no al revés, esta carpeta contiene clases que engloban las funciones de las dependencias que el plugin necesita, pero que se cargan a través de WordPress, tales como plugins de terceros, temas de terceros o la propia instalación de WordPress. En la actualidad, el boilerplate solamente tiene dependencia con ACF PRO y con WordPress, pero si para tu desarrollo necesitas alguna más, siéntente libre de crearla. Igualmente, si hay algún método, hook o cualquier elemento que sea necesario para tu desarrollo y aún no existe, te invito a que lo añadas a su clase correspondiente y solicites una Pull Request para integrarlo dentro del boilerplate.
-        - **WordPress:** En este directorio se definen constantes con los hooks y opciones de WordPress, así como métodos que engloban las funciones de WordPress y dependencias de plugins de terceros.
-            - **Resources:** Contiene clases abstractas que facilitan el desarrollo de las distintas funcionalidades del plugin.
-            - **WpActions.php:** Clase en la que se definen las constantes con los hooks de WordPress.
-            - **WpOptions.php:** Clase en la que se definen las constantes con los nombres de las opciones de la tabla "options" de WordPress.
-            - **WpProvider.php:** Clase en la que se definen los métodos que engloban las funciones de WordPress. Muy útil para realizar test con PHPUnit sin la necesidad de ejecutar WordPress.
-            - **WpDependencies.php:** Clase en la que se definen los plugins de terceros que necesita el plugin para funcionar, así como las versiones de PHP y de WordPress. En caso de que no se cumplan con estos requisitos, el plugin no se activará.
-        - **AdvancedCustomFields:** En este directorio se definen constantes con los hooks y opciones del plugin ACF PRO, así como métodos que engloban las funciones de dicho plugin.
-            - **Resources:** Contiene clases abstractas que facilitan el desarrollo de las distintas funcionalidades del plugin.
-            - **Services:** Contiene clases con métodos que sean de utilidad para el desarrollo del plugin y que puedan ser utilizados desde cualquier otra clase, como por ejemplo un método que se encargue de crear un tipo de campo concreto desde ACF.
-            - **AcfActions.php:** Clase en la que se definen las constantes con los hooks de ACF.
-            - **AcfProvider.php:** Clase en la que se definen los métodos que engloban las funciones de ACF. Muy útil para realizar test con PHPUnit sin la necesidad de ejecutar WordPress.
-            - **AcfLocations.php:** Clase en la que se definen las distintas localizaciones a las que se pueden asignar grupos de campos de ACF.
+        - **Commons:** En este directorio puedes crear clases para definir información que te sea útil en el resto de clases del plugin, tal como nombres de campos personalizados o hooks a medida que crees dentro de tu plugin.
     - **Modules:** Contiene las clases de PHP que desarrollarás para añadir las funcionalidades de tu plugin a la web en la que se instale el mismo.
         - **Endpoints:** Con la llegada de la API Rest de WordPress, es posible interactuar con nuestra web desde un servicio externo, como puede ser una app o un front hecho con un framework de Javascript. En esta carpeta, podrás crear tus propios endpoints para que devuelvan los datos que necesite tu aplicación externa... o interna.
-        - **FieldsGroup:** Una de las carácteristicas de WordPress, es que permite la creación de campos personalizados para almacenar metadatos para las distintas entidades que incorpora el CMS en su core. En esta carpera puedes crear tantos grupos de campos como necesites para tus tipos de contenido, taxonomías, páginas de opciones, perfiles de usuario,... En fin, para lo que necesites.
+        - **FieldsGroups:** Una de las carácteristicas de WordPress, es que permite la creación de campos personalizados para almacenar metadatos para las distintas entidades que incorpora el CMS en su core. En esta carpera puedes crear tantos grupos de campos como necesites para tus tipos de contenido, taxonomías, páginas de opciones, perfiles de usuario,... En fin, para lo que necesites.
         - **PostTypes:** WordPress trae incluidos en su núcleo una serie de tipos de contenido. Los más conocidos son las páginas y las entradas, pero también lo son los archivos de la biblioteca, los menús, etc. Además, te ofrece la posibilidad de que puedas tener los tuyos propios, como pueden ser para crear fichas de producto (como hace WooCommerce), cursos (como es el caso de Sensei) y todo lo que se te pase por la cabeza. Guarda en esta carpeta todos los tipos de contenido personalizados que desarrolles.
         - **RestFields:** Pese a que los endpoints que trae por defecto la API Rest de WordPress te pueden proporcionar mucha información sobre tu sitio web, hay veces que esta información no es suficiente. Como alternativa a crear tu propio endpoint, WordPress te ofrece la posibilidad de añadir un nuevo campo a los endpoints que ya tiene integrados. En esta carpeta, podrás crear tus campos personalizados e incluirlos en el endpoint que desees.
         - **Roles:** WordPress, por defecto, incorpora cinco tipos de roles, con sus respectivas restricciones, pero, ¿qué ocurre si necesitas un sexto tipo de rol con unas restricciones específicas? En esta carpeta, podrás crear tus roles personalizados para asignárselos a los usuarios que desees.
         - **SettingsPages:** La mayoría de plugins o temas incorporan una página de ajustes en la que poder configurar parámetros, incluir claves,... En esta carpeta, podrás crear tus propias páginas de ajustes y asignarles los campos y opciones que creas necesarios para tu plugin.
         - **Taxonomies:** WordPress también trae incluidas en su núcleo taxonomías, que te permiten clasificar los contenidos de un tipo concreto o de varios tipos. Algunas de estas taxonomías permiten una jerarquía, como es el caso de las categorías de una entrada, que dan la posibilidad de crear sub-categorías. Otras, por el contrario, no permiten dicha jerarquía, como es el caso de las etiquetas de una entrada. En esta carpeta podrás tener todas las taxonomías personalizadas que necesites.
-    - **Infrastructure:** En este directorio puedes crear clases para definir información que te sea útil en el resto de clases del plugin, tal como nombres de campos personalizados o hooks a medida que crees dentro de tu plugin.
     - **Services:** En este directorio puedes crear clases para definir métodos que sean de utilidad para el desarrollo del plugin y que puedan ser utilizados desde cualquier otra clase, como por ejemplo un método que se encargue de realizar una petición a un endpoint y devolver el resultado de una forma concreta.
 - **vendor:** En esta carpeta, se almacenarán todas las dependencias que se instalen en el plugin al ejecutar el comando "composer install". Recuerda que debes incluirla en el archivo **.gitignore**.
 - **composer.json:** Este es el archivo de configuración de Composer. En él, encontrarás las librerías y dependencias que el plugin necesita para funcionar. Quizá necesites añadir las tuyas propias en función del plugin que vayas a desarrollar.
@@ -91,16 +78,10 @@ De todas formas, para ayudarte, te hago un resumen de los archivos y carpetas qu
 - **.gitignore:** Este archivo contiene aquellos archivos que deben ser ignorados por Git y, por tanto no se deben subir al repositorio.
 - **phpcs.xml:** Se trata del archivo con las reglas que hay que seguir para que el código cumpla con los estándares del proyecto.
 
-## Comandos útiles durante el desarrollo del plugin
-
-|Comando|Descripción|
-|---|---|
-|```composer install```|Instala las dependencias necesarias para el correcto funcionamiento del plugin (no se incluyen plugins ni temas de terceros)|
-|```composer update```|Actualiza las dependencias necesarias para el correcto funcionamiento del plugin (no se incluyen plugins ni temas de terceros)|
-|```composer phpcs```|Permite ejecutar el CodeSniffer y localizar errores en la sintaxis del código|
-|```composer fix```|Arregla, de forma automática, algunos errores en la sintaxis del código detectados por el CodeSniffer|
-
 ## Changelog
+
+### 0.3.0
+- Simplificar la estructura de carpetas del plugin para mejorar la experiencia de desarrollo.
 
 ### 0.2.0
 - Incorporación del CodeSniffer y de los comandos ```composer phpcs``` y ```composer fix```.

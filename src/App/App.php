@@ -1,21 +1,13 @@
 <?php
 namespace PluginBoilerplate\App;
 
-use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
-use PluginBoilerplate\Providers\AdvancedCustomFields\Services\FieldService;
-use PluginBoilerplate\Providers\WordPress\WpActions;
-use PluginBoilerplate\Providers\WordPress\WpDependencies;
-use PluginBoilerplate\Providers\WordPress\WpProvider;
+use PluginBoilerplate\Services\HelpersService;
 
 /**
  * App
  */
-class App
-{
-    private AcfProvider $acf;
-    private WpProvider $provider;
+class App {
     private WpDependencies $wp_dependencies;
-    private FieldService $acf_field_service;
 
     /**
      * __construct()
@@ -24,12 +16,11 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->load_dependencies();
 
         if ( false === $this->wp_dependencies->check_dependencies() ) {
-            $this->provider->add_action( WpActions::ADMIN_NOTICES, [ $this, 'render_dependencies_not_found_notice' ] );
+            add_action( 'admin_notices', [ $this, 'render_dependencies_not_found_notice' ] );
             return;
         }
         
@@ -43,12 +34,11 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function init(): void
-    {
-        $this->provider->add_action( WpActions::PLUGINS_LOADED, [ $this, 'load_classes' ] );
-        $this->provider->add_action( WpActions::PLUGINS_LOADED, [ $this, 'load_textdomain' ] );
-        $this->provider->add_action( WpActions::WP_ENQUEUE_SCRIPTS, [ $this, 'load_public_assets' ] );
-        $this->provider->add_action( WpActions::ADMIN_ENQUEUE_SCRIPTS, [ $this, 'load_admin_assets' ] );
+    public function init(): void {
+        add_action( 'plugins_loaded', [ $this, 'load_classes' ] );
+        add_action( 'plugins_loaded', [ $this, 'load_textdomain' ] );
+        add_action( 'wp_enqueue_scripts', [ $this, 'load_public_assets' ] );
+        add_action( 'admin_enqueue_scripts', [ $this, 'load_admin_assets' ] );
     }
 
     /**
@@ -58,12 +48,8 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function load_dependencies(): void
-    {
-        $this->provider = new WpProvider();
-        $this->acf = new AcfProvider();
-        $this->wp_dependencies = new WpDependencies( $this->provider );
-        $this->acf_field_service = new FieldService();
+    public function load_dependencies(): void {
+        $this->wp_dependencies = new WpDependencies();
     }
 
     /**
@@ -73,8 +59,8 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function load_classes(): void
-    {
+    public function load_classes(): void {
+        $helpers = new HelpersService();
     }
 
     /**
@@ -84,9 +70,8 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function load_textdomain(): void
-    {
-        $this->provider->load_plugin_textdomain();
+    public function load_textdomain(): void {
+        load_plugin_textdomain( PLUGIN_BOILERPLATE_TEXTDOMAIN, false, PLUGIN_BOILERPLATE_LANG_DIR );
     }
 
     /**
@@ -96,10 +81,9 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function load_public_assets(): void
-    {
-        $this->provider->enqueue_script( 'plugin-boilerplate-front', PLUGIN_BOILERPLATE_PUBLIC_ASSETS . '/js/scripts.js', [], PLUGIN_BOILERPLATE_VERSION, true );
-        $this->provider->enqueue_style( 'plugin-boilerplate-front', PLUGIN_BOILERPLATE_PUBLIC_ASSETS . '/css/styles.css', [], PLUGIN_BOILERPLATE_VERSION );
+    public function load_public_assets(): void {
+        wp_enqueue_script( 'plugin-boilerplate-front', PLUGIN_BOILERPLATE_PUBLIC_ASSETS . '/js/scripts.js', [], PLUGIN_BOILERPLATE_VERSION, true );
+        wp_enqueue_style( 'plugin-boilerplate-front', PLUGIN_BOILERPLATE_PUBLIC_ASSETS . '/css/styles.css', [], PLUGIN_BOILERPLATE_VERSION );
     }
 
     /**
@@ -109,10 +93,9 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function load_admin_assets(): void
-    {
-        $this->provider->enqueue_script( 'plugin-boilerplate-admin', PLUGIN_BOILERPLATE_ADMIN_ASSETS . '/js/scripts.js', [], PLUGIN_BOILERPLATE_VERSION, true );
-        $this->provider->enqueue_style( 'plugin-boilerplate-admin', PLUGIN_BOILERPLATE_ADMIN_ASSETS . '/css/styles.css', [], PLUGIN_BOILERPLATE_VERSION );
+    public function load_admin_assets(): void {
+        wp_enqueue_script( 'plugin-boilerplate-admin', PLUGIN_BOILERPLATE_ADMIN_ASSETS . '/js/scripts.js', [], PLUGIN_BOILERPLATE_VERSION, true );
+        wp_enqueue_style( 'plugin-boilerplate-admin', PLUGIN_BOILERPLATE_ADMIN_ASSETS . '/css/styles.css', [], PLUGIN_BOILERPLATE_VERSION );
     }
 
     /**
@@ -122,18 +105,17 @@ class App
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function render_dependencies_not_found_notice(): void
-    {
+    public function render_dependencies_not_found_notice(): void {
         $dependencies = WpDependencies::DEPENDENCIES;
 
         ?>
         <div class="notice notice-error is-dismissible">
-            <p><?php echo $this->provider->translate( 'In order to activate the <b>' . PLUGIN_BOILERPLATE_NAME . '</b> plugin, you have to meet the next requirements:' ); ?></p>
+            <p><?php echo sprintf( __( 'In order to activate the <b>%s</b> plugin, you have to meet the next requirements:', PLUGIN_BOILERPLATE_TEXTDOMAIN ), PLUGIN_BOILERPLATE_NAME ); ?></p>
             <ul>
-                <li><?php echo sprintf( $this->provider->translate( 'PHP version: %s' ), WpDependencies::MIN_PHP_VERSION ); ?></li>
-                <li><?php echo sprintf( $this->provider->translate( 'WordPress version: %s' ), WpDependencies::MIN_WP_VERSION ); ?></li>
+                <li><?php echo sprintf( __( 'PHP version: %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), WpDependencies::MIN_PHP_VERSION ); ?></li>
+                <li><?php echo sprintf( __( 'WordPress version: %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), WpDependencies::MIN_WP_VERSION ); ?></li>
                 <?php foreach( $dependencies as $name => $plugin ): ?>
-                    <li><?php echo sprintf( $this->provider->translate( 'Activate plugin: %s' ), $name ); ?></li>
+                    <li><?php echo sprintf( __( 'Activate plugin: %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $name ); ?></li>
                 <?php endforeach ?>
             </ul>
         </div>

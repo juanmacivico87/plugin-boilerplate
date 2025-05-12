@@ -1,32 +1,17 @@
 <?php
-namespace PluginBoilerplate\Providers\WordPress;
+namespace PluginBoilerplate\App;
 
 /**
  * WpDependencies
  */
-class WpDependencies
-{
+class WpDependencies {
     const MIN_PHP_VERSION = '7.4.0';
     const MIN_WP_VERSION = '5.0';
     const DEPENDENCIES = [
-        'Advanced Custom Fields PRO' => 'advanced-custom-fields-pro/acf.php',
+        'Advanced Custom Fields PRO' => 'advanced-custom-fields-pro/acf.php'
     ];
 
     private ?array $active_plugins = null;
-    private WpProvider $provider;
-
-    /**
-     * __construct()
-     *
-     * @param   WpProvider $provider Provider of WordPress functions.
-     * @return 	void
-     * @access 	public
-     * @package	plugin-boilerplate
-     */
-    public function __construct( WpProvider $provider )
-    {
-        $this->provider = $provider;
-    }
 
     /**
      * init()
@@ -35,16 +20,15 @@ class WpDependencies
      * @access 	private
      * @package	plugin-boilerplate
      */
-    private function init(): void
-    {
-		$this->active_plugins = $this->provider->get_option( WpOptions::ACTIVE_PLUGINS );
+    private function init(): void {
+		$this->active_plugins = get_option( 'active_plugins' ) ?: null;
 
         if ( null === $this->active_plugins ) {
             $this->active_plugins = [];
         }
 
-		if ( false !== $this->provider->is_multisite() ) {
-            $site_option = $this->provider->get_site_option( WpOptions::ACTIVE_SITEWIDE_PLUGINS );
+		if ( false !== is_multisite() ) {
+            $site_option = get_site_option( 'active_sitewide_plugins' ) ?: null;
 
             if ( null === $site_option ) {
                 return;
@@ -61,8 +45,9 @@ class WpDependencies
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function check_dependencies(): bool
-    {
+    public function check_dependencies(): bool {
+        global $wp_version;
+
         if ( null === $this->active_plugins ) {
             $this->init();
         }
@@ -77,7 +62,7 @@ class WpDependencies
             return false;
         }
             
-        if ( false === version_compare( $this->provider->wp_version, self::MIN_WP_VERSION, '>=' ) ) {
+        if ( false === version_compare( $wp_version, self::MIN_WP_VERSION, '>=' ) ) {
             return false;
         }
 

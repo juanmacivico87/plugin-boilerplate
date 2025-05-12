@@ -1,20 +1,10 @@
 <?php
-namespace PluginBoilerplate\Providers\AdvancedCustomFields\Resources;
-
-use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
-use PluginBoilerplate\Providers\AdvancedCustomFields\Services\FieldService;
-use PluginBoilerplate\Providers\WordPress\WpActions;
-use PluginBoilerplate\Providers\WordPress\WpProvider;
+namespace PluginBoilerplate\Modules\FieldsGroups;
 
 /**
  * FieldsGroup
  */
-abstract class FieldsGroup
-{
-    private WpProvider $provider;
-    private AcfProvider $acf;
-    private FieldService $field_service;
-
+abstract class FieldsGroup {
     protected string $title = '';
     protected int $menu_order = 0;
     protected string $position = 'normal';
@@ -29,19 +19,11 @@ abstract class FieldsGroup
     /**
      * __construct()
      * 
-     * @param   WpProvider   $provider      Provider of WordPress functions.
-     * @param   AcfProvider  $acf           Provider of ACF functions.
-     * @param   FieldService $field_service Service to create fields.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct( WpProvider $provider, AcfProvider $acf, FieldService $field_service )
-    {
-        $this->provider = $provider;
-        $this->acf = $acf;
-        $this->field_service = $field_service;
-
+    public function __construct() {
         $this->init();
     }
 
@@ -52,9 +34,8 @@ abstract class FieldsGroup
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function init(): void
-    {
-        $this->provider->add_action( WpActions::INIT, [ $this, 'create_fields_group' ] );
+    public function init(): void {
+        add_action( 'init', [ $this, 'create_fields_group' ] );
     }
 
     /**
@@ -64,12 +45,9 @@ abstract class FieldsGroup
      * @access 	protected
      * @package	plugin-boilerplate
      */
-    protected function get_fields(): array
-    {
-        // Set into $fields array the fields from FieldService class.
+    protected function get_fields(): array {
+        // Set into $fields array the fields from ACF plugin.
         $fields = [];
-
-        // $fields[] = $this->field_service->create_text_field();
 
         return $fields;
     }
@@ -81,8 +59,7 @@ abstract class FieldsGroup
      * @access 	protected
      * @package	plugin-boilerplate
      */
-    protected function get_location(): array
-    {
+    protected function get_location(): array {
         // Copy into $location array the array of locations for the group of fields.
         $location = [];
 
@@ -96,9 +73,8 @@ abstract class FieldsGroup
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function create_fields_group(): void
-    {
-        $this->acf->add_local_field_group( [
+    public function create_fields_group(): void {
+        acf_add_local_field_group( [
             'key' => 'group_' . md5( $this::GROUP_NAME ),
             'title' => $this->title,
             'fields' => $this->get_fields(),

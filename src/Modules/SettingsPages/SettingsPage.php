@@ -1,18 +1,10 @@
 <?php
-namespace PluginBoilerplate\Providers\AdvancedCustomFields\Resources;
-
-use PluginBoilerplate\Providers\AdvancedCustomFields\AcfActions;
-use PluginBoilerplate\Providers\AdvancedCustomFields\AcfProvider;
-use PluginBoilerplate\Providers\WordPress\WpProvider;
+namespace PluginBoilerplate\Modules\SettingsPages;
 
 /**
  * SettingsPage
  */
-abstract class SettingsPage
-{
-    private WpProvider $provider;
-    private AcfProvider $acf;
-
+abstract class SettingsPage {
     protected string $page_title = '';
     protected string $menu_title = '';
     protected string $capability = 'manage_options';
@@ -25,17 +17,11 @@ abstract class SettingsPage
     /**
      * __construct()
      *
-     * @param   WpProvider  $provider Provider of WordPress functions.
-     * @param   AcfProvider $acf      Provider of ACF functions.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct( WpProvider $provider, AcfProvider $acf )
-    {
-        $this->provider = $provider;
-        $this->acf = $acf;
-
+    public function __construct() {
         $this->init();
     }
 
@@ -46,10 +32,9 @@ abstract class SettingsPage
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function init(): void
-    {
+    public function init(): void {
         $this->set_default_labels();
-        $this->provider->add_action( AcfActions::INIT, [ $this, 'create_settings_page' ] );
+        add_action( 'acf/init', [ $this, 'create_settings_page' ] );
     }
 
     /**
@@ -59,22 +44,21 @@ abstract class SettingsPage
      * @access 	private
      * @package	plugin-boilerplate
      */
-    private function set_default_labels(): void
-    {
+    private function set_default_labels(): void {
         if ( false !== empty( $this->page_title ) ) {
-            $this->page_title = $this->provider->translate( 'Settings' );
+            $this->page_title = __( 'Settings', PLUGIN_BOILERPLATE_TEXTDOMAIN );
         }
 
         if ( false !== empty( $this->menu_title ) ) {
-            $this->menu_title = $this->provider->translate( 'Settings' );
+            $this->menu_title = __( 'Settings', PLUGIN_BOILERPLATE_TEXTDOMAIN );
         }
 
         if ( false !== empty( $this->update_button ) ) {
-            $this->update_button = $this->provider->translate( 'Save' );
+            $this->update_button = __( 'Save', PLUGIN_BOILERPLATE_TEXTDOMAIN );
         }
 
         if ( false !== empty( $this->updated_message ) ) {
-            $this->updated_message = $this->provider->translate( 'Settings have been saved successfully' );
+            $this->updated_message = __( 'Settings have been saved successfully', PLUGIN_BOILERPLATE_TEXTDOMAIN );
         }
     }
 
@@ -85,9 +69,8 @@ abstract class SettingsPage
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function create_settings_page(): void
-    {
-        $this->acf->add_options_page(
+    public function create_settings_page(): void {
+        acf_add_options_page(
             [
                 'page_title' => $this->page_title,
                 'menu_title' => $this->menu_title,

@@ -1,16 +1,10 @@
 <?php
-namespace PluginBoilerplate\Providers\WordPress\Resources;
-
-use PluginBoilerplate\Providers\WordPress\WpActions;
-use PluginBoilerplate\Providers\WordPress\WpProvider;
+namespace PluginBoilerplate\Modules\Taxonomies;
 
 /**
  * Taxonomy
  */
-abstract class Taxonomy
-{
-    private WpProvider $provider;
-
+abstract class Taxonomy {
     protected string $singular = 'Taxonomy';
     protected string $plural = 'Taxonomies';
     protected bool $public = true;
@@ -42,15 +36,12 @@ abstract class Taxonomy
     /**
      * __construct()
      *
-     * @param   WpProvider $provider Provider of WordPress functions.
      * @param   array      $args     Arguments to create the taxonomy.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function __construct( WpProvider $provider, array $args )
-    {
-        $this->provider = $provider;
+    public function __construct( array $args ) {
         $this->rewrite['hierarchical'] = $this->hierarchical;
 
         if ( false !== isset( $args['slug'] ) && false === empty( $args['slug'] ) ) {
@@ -67,9 +58,8 @@ abstract class Taxonomy
      * @access 	private
      * @package	plugin-boilerplate
      */
-    private function init(): void
-    {
-        $this->provider->add_action( WpActions::INIT, [ $this, 'add_custom_taxonomy' ] );
+    private function init(): void {
+        add_action( 'init', [ $this, 'add_custom_taxonomy' ] );
     }
 
     /**
@@ -79,37 +69,37 @@ abstract class Taxonomy
      * @access 	private
      * @package	plugin-boilerplate
      */
-    private function get_labels(): array
-    {
+    private function get_labels(): array {
         $common_labels = [
-            'name' => sprintf( $this->provider->translate( '%s' ), $this->plural ),
-            'singular_name' => sprintf( $this->provider->translate( '%s' ), $this->singular ),
-            'menu_name' => sprintf( $this->provider->translate( '%s' ), $this->plural ),
-            'all_items' => sprintf( $this->provider->translate( 'All %s' ), $this->plural ),
-            'edit_item' => sprintf( $this->provider->translate( 'Edit %s' ), $this->singular ),
-            'view_item' => sprintf( $this->provider->translate( 'View %s' ), $this->singular ),
-            'update_item' => sprintf( $this->provider->translate( 'Update %s' ), $this->singular ),
-            'add_new_item' => sprintf( $this->provider->translate( 'Add new %s' ), $this->singular ),
-            'new_item_name' => sprintf( $this->provider->translate( 'New %s Name' ), $this->singular ),
-            'search_items' => sprintf( $this->provider->translate( 'Search %s' ), $this->plural ),
-            'not_found' => sprintf( $this->provider->translate( '%s not Found' ), $this->plural ),
-            'back_to_items' => sprintf( $this->provider->translate( 'Back to %s' ), $this->plural ),
+            'name' => sprintf( __( '%s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'singular_name' => sprintf( __( '%s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'menu_name' => sprintf( __( '%s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'all_items' => sprintf( __( 'All %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'edit_item' => sprintf( __( 'Edit %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'view_item' => sprintf( __( 'View %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'update_item' => sprintf( __( 'Update %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'add_new_item' => sprintf( __( 'Add new %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'new_item_name' => sprintf( __( 'New %s Name', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'search_items' => sprintf( __( 'Search %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'not_found' => sprintf( __( '%s not Found', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'back_to_items' => sprintf( __( 'Back to %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
         ];
 
         $hierarchical_labels = [
-            'parent_item' => sprintf( $this->provider->translate( 'Parent %s' ), $this->singular ),
-            'parent_item_colon' => sprintf( $this->provider->translate( 'Parent %s:' ), $this->singular ),
+            'parent_item' => sprintf( __( 'Parent %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
+            'parent_item_colon' => sprintf( __( 'Parent %s:', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->singular ),
         ];
 
         $not_hierarchical_labels = [
-            'popular_items' => sprintf( $this->provider->translate( 'Popular %s' ), $this->plural ),
-            'separate_items_with_commas' => sprintf( $this->provider->translate( 'Separate %s with Commas' ), $this->plural ),
-            'add_or_remove_items' => sprintf( $this->provider->translate( 'Add or remove %s' ), $this->plural ),
-            'choose_from_most_used' => sprintf( $this->provider->translate( 'Choose from most used %s' ), $this->plural ),
+            'popular_items' => sprintf( __( 'Popular %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'separate_items_with_commas' => sprintf( __( 'Separate %s with Commas', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'add_or_remove_items' => sprintf( __( 'Add or remove %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
+            'choose_from_most_used' => sprintf( __( 'Choose from most used %s', PLUGIN_BOILERPLATE_TEXTDOMAIN ), $this->plural ),
         ];
 
         return false !== $this->hierarchical
-            ? array_merge( $common_labels, $hierarchical_labels ) : array_merge( $common_labels, $not_hierarchical_labels );
+            ? array_merge( $common_labels, $hierarchical_labels )
+            : array_merge( $common_labels, $not_hierarchical_labels );
     }
 
     /**
@@ -119,8 +109,7 @@ abstract class Taxonomy
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function add_custom_taxonomy(): void
-    {
+    public function add_custom_taxonomy(): void {
         $args = [
             'label'  => $this->singular,
             'labels' => $this->get_labels(),
@@ -144,6 +133,6 @@ abstract class Taxonomy
             $args['show_tagcloud'] = $this->show_tagcloud;
         }
 
-        $this->provider->register_taxonomy( $this::TAXONOMY_NAME, $this->post_types, $args );
+        register_taxonomy( $this::TAXONOMY_NAME, $this->post_types, $args );
     }
 }
