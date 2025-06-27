@@ -16,16 +16,14 @@
     <arg name="report" value="full"/>
     <!-- Bans the use of the PHP long array syntax -->
     <rule ref="Generic.Arrays.DisallowLongArraySyntax"/>
-    <!-- Checks the declaration of the class and its inheritance is correct -->
-    <rule ref="Squiz.Classes.ClassDeclaration"/>
     <!-- Tests that the file name and the name of the class contained within the file match -->
     <rule ref="Squiz.Classes.ClassFileName"/>
-    <!-- Ensures classes don't contain duplicate property names -->
-    <rule ref="Squiz.Classes.DuplicateProperty"/>
     <!-- Verifies that properties are declared correctly -->
     <rule ref="PSR2.Classes.PropertyDeclaration"/>
     <!-- Ensures classes are in camel caps, and the first letter is capitalised -->
     <rule ref="Squiz.Classes.ValidClassName"/>
+    <!-- Checks that the opening brace of a class/interface/trait is on the same line as the class declaration -->
+    <rule ref="Generic.Classes.OpeningBraceSameLine"/>
     <!-- This sniff class detected empty statement -->
     <rule ref="Generic.CodeAnalysis.EmptyStatement"/>
     <!-- Detects unconditional if- and elseif-statements -->
@@ -39,11 +37,11 @@
     <!-- Ensures the file ends with a newline character -->
     <rule ref="PSR2.Files.EndFileNewline"/>
     <!-- Ensures there is no space after cast tokens -->
-    <rule ref="Generic.Formatting.NoSpaceAfterCast"/>
+    <rule ref="Generic.Formatting.SpaceAfterCast"/>
     <!-- Checks that duplicate arguments are not used in function declarations -->
     <rule ref="Squiz.Functions.FunctionDuplicateArgument"/>
-    <!-- Checks that the opening brace of a function is on the line after the function declaration -->
-    <rule ref="Generic.Functions.OpeningFunctionBraceBsdAllman"/>
+    <!-- Checks that the opening brace of a function is on the same line as the function declaration -->
+    <rule ref="Generic.Functions.OpeningFunctionBraceKernighanRitchie"/>
     <!-- Ensures function params with default values are at the end of the declaration -->
     <rule ref="PEAR.Functions.ValidDefaultValue"/>
     <!-- Checks that the closing brace of a function goes directly after the body -->
