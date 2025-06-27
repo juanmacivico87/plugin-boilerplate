@@ -36,7 +36,7 @@ abstract class Taxonomy {
     /**
      * __construct()
      *
-     * @param   array      $args     Arguments to create the taxonomy.
+     * @param   array $args Arguments to create the taxonomy.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate

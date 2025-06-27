@@ -23,7 +23,6 @@ class HelpersService {
      * @access 	public
      * @package	plugin-boilerplate
      */
-    public function init(): void {
-        
+    public function init(): void {    
     }
 }

@@ -4,8 +4,7 @@ namespace PluginBoilerplate\Modules\PostTypes;
 /**
  * PostType
  */
-abstract class PostType
-{
+abstract class PostType {
     protected string $singular = 'Post';
     protected string $plural = 'Posts';
     protected bool $public = true;
@@ -35,7 +34,7 @@ abstract class PostType
     /**
      * __construct()
      *
-     * @param   array      $args     Arguments to create the post type.
+     * @param   array $args Arguments to create the post type.
      * @return 	void
      * @access 	public
      * @package	plugin-boilerplate
